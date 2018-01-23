@@ -1,0 +1,30 @@
+<div class="ui right left input">
+  <input type="text" placeholder="Daily rate from" [(ngModel)]="filter.mdFrom">
+  <input type="text" placeholder="Daily rate to" [(ngModel)]="filter.mdTo">
+</div>
+  <table class="ui table">
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Md</th>
+        <th>Free from</th>
+        <th>Role</th>
+        <th>Experience</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contractor of contractors | rangeFilter: {md: [filter.mdFrom, filter.mdTo]}">
+        <td>{{contractor.name}}</td>
+        <td>{{contractor.md | currency}}</td>
+        <td>{{contractor.freeFrom | date:'shortDate'}}</td>
+        <td>{{contractor.role}}</td>
+        <td>{{contractor.firstExperience | experienceYears}}</td>
+        <td><a [routerLink]="['/contractor', contractor._id]">Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="ui positive button" [routerLink]="['/add-contractor']">
+    Add
+  </button>
+  

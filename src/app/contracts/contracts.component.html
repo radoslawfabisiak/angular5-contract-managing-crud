@@ -1,0 +1,44 @@
+<div class="ui right left input">
+  <input type="text" placeholder="Daily rate from" [(ngModel)]="filter.mdFrom">
+  <input type="text" placeholder="Daily rate to" [(ngModel)]="filter.mdTo">
+  <input type="text" placeholder="Contractor role" [(ngModel)]="filter.name">
+  <input type="text" placeholder="Client name" [(ngModel)]="filter.client">
+</div>
+<table class="ui table">
+  <thead>
+      <tr>
+      <th>With</th>
+      <th>Signed</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Md</th>
+      <th>Client Md</th>
+      <th>Role</th>
+      <th>Pay date</th>
+      <th>Client</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contract of contracts | rangeFilter: {md: [filter.mdFrom, filter.mdTo]} | searchFilter: {
+      role: filter.role,
+      client: filter.client
+    }">
+      
+      <td><a [routerLink]="['/contractor', contract.with._id]">{{contract.with.name}}</a></td>
+      <td>{{contract.signed}}</td>
+      <td>{{contract.from | date:'shortDate'}}</td>
+      <td>{{contract.to | date:'shortDate'}}</td>
+      <td>{{contract.md | currency}}</td>
+      <td>{{contract.clientMd | currency}}</td>
+      <td>{{contract.role}}</td>
+      <td>{{contract.payDate | date:'shortDate'}}</td>
+      <td>{{contract.client}}</td>
+      <td><a [routerLink]="['/contract', contract._id]">Details</a></td>
+    </tr>
+  </tbody>
+</table>
+<button class="ui positive button" [routerLink]="['/add-contract']">
+  Add
+</button>
+

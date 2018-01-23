@@ -1,0 +1,102 @@
+
+  <form class="ui form" [formGroup]="contractForm" novalidate>
+    <div class="field">
+      <label>Contractor</label>
+      <select *ngIf="!editMode" class="form-control" name="with" formControlName="with">
+          <option disabled selected value>Select contractor</option>
+          <option *ngFor="let contractor of contractors" [ngValue]="contractor">{{contractor.name}}</option>
+      </select>
+      <div *ngIf="editMode">
+        {{contract.with.name}}
+      </div>
+      <div *ngIf="showErrors && contractForm.controls.with.status === 'INVALID'">
+        Contractor is required.
+      </div>
+    </div>
+    <div class="field">
+        <label>Signed</label>
+        <input type="checkbox" name="signed" placeholder="signed" formControlName="signed">
+    </div>
+    <div class="field">
+        <label>Daily rate</label>
+        <input type="number" name="md" placeholder="md" formControlName="md">
+        <div *ngIf="showErrors && contractForm.controls.md.status === 'INVALID'">
+          Daily rate is required.
+        </div>
+    </div>
+    <div class="field">
+        <label>Client daily rate</label>
+        <input type="number" name="clientMd" placeholder="clientMd" formControlName="clientMd">
+        <div *ngIf="showErrors && contractForm.controls.clientMd.status === 'INVALID'">
+          Client daily rate is required.
+        </div>
+    </div>
+    <div class="field">
+        <label>Role</label>
+        <input  
+          type="text" 
+          name="role" 
+          placeholder="role"
+          formControlName="role">
+        <div *ngIf="showErrors && contractForm.controls.role.status === 'INVALID'">
+          Role is required.
+        </div>
+    </div>
+    <div class="field">
+      <label>Start date</label>
+      <input 
+        type="text" 
+        onfocus="(this.type='date')" 
+        onblur="(this.type='text')" 
+        name="from" 
+        placeholder="Start date"
+        formControlName="from">
+      <div *ngIf="showErrors && contractForm.controls.from.status === 'INVALID'">
+        Start date is required.
+      </div>
+    </div>
+    <div class="field">
+      <label>End date</label>
+      <input 
+        type="text" 
+        onfocus="(this.type='date')" 
+        onblur="(this.type='text')" 
+        name="to" 
+        placeholder="End date"
+        formControlName="to">
+      <div *ngIf="showErrors && contractForm.controls.to.status === 'INVALID'">
+        End date is required.
+      </div>
+    </div>
+    <div class="field">
+      <label>Payment date</label>
+      <input 
+        type="text" 
+        onfocus="(this.type='date')" 
+        onblur="(this.type='text')" 
+        name="payDate" 
+        placeholder="Payment date"
+        formControlName="payDate">
+      <div *ngIf="showErrors && contractForm.controls.payDate.status === 'INVALID'">
+        Payment date is required.
+      </div>
+    </div>
+    <div class="field">
+        <label>Client</label>
+        <input
+          type="text" 
+          name="client" 
+          placeholder="Client" 
+          formControlName="client">
+        <div *ngIf="showErrors && contractForm.controls.client.status === 'INVALID'">
+        Client is required.
+        </div>
+    </div>
+    <button 
+      class="ui button positive" 
+      type="submit" 
+      (click)="editMode ? editContract() : addContract()"
+      [disabled]="buttonDisable">
+      {{editMode ? 'Save' : 'Submit'}}
+    </button>
+  </form>

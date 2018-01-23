@@ -1,0 +1,41 @@
+<div class="ui segment">
+  <div class="ui relaxed divided list">
+    <div class="item">
+      <div class="content">
+        <div class="header">Name</div>
+        {{contractor.name}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Role</div>
+        {{contractor.role}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Daily rate</div>
+        {{contractor.md | currency}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Yrs of experience</div>
+        {{contractor.firstExperience | experienceYears}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Availability</div>
+        {{contractor.freeFrom | date:'shortDate'}}
+      </div>
+    </div>
+  </div>
+</div>
+<button class="ui positive button" [routerLink]="['/edit-contractor', contractor._id]">
+  Edit
+</button>
+<button class="ui red button" (click)="deleteContractor()">
+  Delete
+</button>
+

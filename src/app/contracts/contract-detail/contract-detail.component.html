@@ -1,0 +1,65 @@
+<div class="ui segment">
+  <div class="ui relaxed divided list">
+    <div class="item">
+      <div class="content">
+        <div class="header">With</div>
+        <a [routerLink]="['/contractor', contract.with._id]">{{contract.with.name}}</a>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Signed</div>
+        {{contract.signed}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">From</div>
+        {{contract.from | date:'shortDate'}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">To</div>
+        {{contract.to | date:'shortDate'}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Md</div>
+        {{contract.md | currency}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Client Md</div>
+        {{contract.clientMd | currency}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Role</div>
+        {{contract.role}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Pay date</div>
+        {{contract.payDate | date:'shortDate'}}
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Client</div>
+        {{contract.client}}
+      </div>
+    </div>
+  </div>
+</div>
+<button class="ui positive button" [routerLink]="['/edit-contract', contract._id]">
+  Edit
+</button>
+<button class="ui red button" (click)="deleteContract()">
+  Delete
+</button>
+

@@ -1,0 +1,64 @@
+<form class="ui form" [formGroup]="contractorForm" novalidate>
+    <div class="field">
+      <label>Name</label>
+      <input
+        type="text" 
+        name="name" 
+        placeholder="Name" 
+        formControlName="name">
+        <div *ngIf="showErrors && contractorForm.controls.name.status === 'INVALID'">
+          Name is required.
+        </div>
+    </div>
+    <div class="field">
+        <label>Daily rate</label>
+        <input type="number" name="md" placeholder="md" formControlName="md">
+        <div *ngIf="showErrors && contractorForm.controls.md.status === 'INVALID'">
+          Daily rate is required.
+        </div>
+    </div>
+    <div class="field">
+        <label>Role</label>
+        <input  
+          type="text" 
+          name="role" 
+          placeholder="role"
+          formControlName="role">
+        <div *ngIf="showErrors && contractorForm.controls.role.status === 'INVALID'">
+          Role is required.
+        </div>
+    </div>
+    <div class="field">
+      <label>Availability date</label>
+      <input 
+        type="text" 
+        onfocus="(this.type='date')" 
+        onblur="(this.type='text')" 
+        name="freeFrom" 
+        placeholder="Availability date"
+        formControlName="freeFrom">
+      <div *ngIf="showErrors && contractorForm.controls.freeFrom.status === 'INVALID'">
+        Availability date is required.
+      </div>
+    </div>
+    <div class="field">
+        <label>First experience with role</label>
+        <input 
+          type="text" 
+          onfocus="(this.type='date')" 
+          onblur="(this.type='text')" 
+          name="experience" 
+          placeholder="First experience with role"
+          formControlName="firstExperience">
+        <div *ngIf="showErrors && contractorForm.controls.firstExperience.status === 'INVALID'">
+          First experience date is required.
+        </div>
+    </div>
+    <button 
+      class="ui button positive" 
+      type="submit" 
+      (click)="editMode ? editContractor() : addContractor()"
+      [disabled]="buttonDisable">
+      {{editMode ? 'Save' : 'Submit'}}
+    </button>
+  </form>
